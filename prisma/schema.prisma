@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum Pill {
+    BLUE_PILL
+    RED_PILL
+}
+
+model PillChoice {
+    id        String   @id @default(cuid())
+    twitterId String   @unique
+    pill    Pill
+}
